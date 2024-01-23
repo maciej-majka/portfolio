@@ -14,6 +14,15 @@ Here, the red line is our polymeric chain and the arrows in the background are t
 * Animations
 * Interface for outputing data
 
+## Methods for integrating the equation of motion
+
+The simulation of physical system requires numrical solution of differential equations. Since Stochastic Differential Equations require special treatment of stochastic term, it was necessary to implement the algorithm 'by hand'. Initially, stochastic Verlet methods were implemented (whose remanants still exist in the code), but eventually the stoachstic Runge-Kutta 4th order method was implemented as more reliable for relatively complex interactions contained in the model.
+
+## Animations
+Animations allowed visual instepction of the code performance in sinlge test runs. Two variants were written:
+
+* plot_anim.h and anim_fun.cpp : This version required Gnuplot. It transferred current polymer position to external file and called Gnuplot to display it. Then updated the positions and send refresh prompt to Gnuplot
+* animGL.h and animGL.cpp : This is OpenGL-based version (using freeglut library). The main simlation programme called separate, auxilary program for animation at the beginning and peridically outputted current polymer positions to external file. The auxilarly program, containing main OpenGL loop, read the external file to update the displayed posiitons of the beads.
 
 [^1]: [M. Majka, P. F. Góra, ‘Polymer shape dynamics induced by spatially correlated noise’, Acta Phys. Pol. B, 43, 5, 1133 (2012)](http://web.a.ebscohost.com/abstract?direct=true&profile=ehost&scope=site&authtype=crawler&jrnl=05874254&AN=76482102&h=vQ3WB8hyb8pdYjbzvsWv6OdyFnl8cFEkHO4%2fiukVCmHp2kiWxuROMt1ic8rpbZa3Q6BHTSnrsCmEe0WrQGIN%2bw%3d%3d&crl=c&resultNs=AdminWebAuth&resultLocal=ErrCrlNotAuth&crlhashurl=login.aspx%3fdirect%3dtrue%26profile%3dehost%26scope%3dsite%26authtype%3dcrawler%26jrnl%3d05874254%26AN%3d76482102)
 [^2]: [M. Majka, P. F. Góra, ‘Polymer unfolding and motion synchronization induced by spatially correlated noise’, Phys. Rev. E,  86, 5, 051122 (2012)](https://journals.aps.org/pre/abstract/10.1103/PhysRevE.86.051122)
